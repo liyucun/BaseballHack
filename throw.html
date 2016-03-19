@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Baseball Hackathon</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script src="../js/webcam-swiper-0.1.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+	var moving = false;
+
+	function left () {
+		// if(!moving){
+			moving = true;
+			console.log("left");
+		// }
+	};
+
+	function right () {
+		// if(!moving){
+			moving = true;
+			console.log("right");
+		// }
+	};
+
+	$("body").bind("webcamSwipeLeft", right);//right actionlistener bind to left swipe
+	$("body").bind("webcamSwipeRight", left);//left actionlistener bind to right swipe
+
+	window.initializeWebcamSwiper();
+</script>
+</body>
+</html>
+
+

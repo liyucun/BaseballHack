@@ -127,7 +127,7 @@
   </style>
 
 
-  <script src="js/prefixfree.min.js"></script>
+  <script src="../js/prefixfree.min.js"></script>
 
 
 </head>
@@ -139,11 +139,11 @@
   <div class='login--form'>
     <div class='login--username-container'>
       <label>Channel</label>
-      <input id="channel" autofocus placeholder='Channel Name' type='text'>
+      <input id="channel" autofocus placeholder='Channel Name' type='text' required>
     </div>
     <div class='login--password-container'>
       <label>Username</label>
-      <input id="username" placeholder='Username' type='password'>
+      <input id="username" placeholder='Username' type='password' required>
       <button class='login--login-submit' onclick="GoThrow()">Throw</button>
       <button class='login--login-submit' onclick="GoHit()">Hit</button>
     </div>
@@ -157,19 +157,27 @@
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
-<script src="js/login.js"></script>
+<script src="../js/login.js"></script>
 
 <script type="text/javascript">
   function GoThrow(){
     var channel = document.getElementById('channel').value;
     var username = document.getElementById('username').value;
-    window.location.assign("index.html?channel="+channel+"&username"+username);
+    if(channel != "" && username != ""){
+        window.location.assign("index.html?channel="+channel+"&username"+username);
+    } else {
+      alert("Please fill the channel and your name.");
+    }
   };
 
   function GoHit(){
     var channel = document.getElementById('channel').value;
     var username = document.getElementById('username').value;
-    window.location.assign("index.html?channel="+channel+"&username"+username);
+    if(channel != "" && username != ""){
+        window.location.assign("index.html?channel="+channel+"&username"+username);
+    } else {
+      alert("Please fill the channel and your name.");
+    }
   };
 
 </script>
