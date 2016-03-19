@@ -6,21 +6,35 @@
 	<script src="../js/webcam-swiper-0.1.js"></script>
 </head>
 <body>
+
+<!-- Include the PubNub Library -->
+<script src="https://cdn.pubnub.com/pubnub-dev.js"></script>
 <script type="text/javascript">
-	var moving = false;
+	var channel = getURLParameter('channel');
+	var username = getURLParameter('username');
+
+	var PUBNUB_demo = PUBNUB.init({
+		publish_key: 'pub-c-7f216929-1ce6-49a2-9d92-6884ff0d91f5',
+		subscribe_key: 'sub-c-801c40d4-eddd-11e5-872f-02ee2ddab7fe'
+	});
+
+	function publish(channel, msg) {
+		PUBNUB_demo.publish({
+			channel: channel,
+			message: {"text":msg}
+		});
+	};
+
+	function getURLParameter(name) {
+		return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+	}
 
 	function left () {
-		// if(!moving){
-			moving = true;
-			console.log("left");
-		// }
+		publish(channel, 'left');
 	};
 
 	function right () {
-		// if(!moving){
-			moving = true;
-			console.log("right");
-		// }
+		publish(channel, 'right');
 	};
 
 	$("body").bind("webcamSwipeLeft", right);//right actionlistener bind to left swipe

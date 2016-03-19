@@ -1,11 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Baseball Hackathon</title>
+	<title>Baseball Strike!</title>
 </head>
 <body>
+<!-- Include the PubNub Library -->
+<p id="demo"></p>
+<script src="https://cdn.pubnub.com/pubnub-dev.js"></script>
 <script type="text/javascript">
-	
+	var channel = getURLParameter('channel');
+	var username = getURLParameter('username');
+
+	var PUBNUB_demo = PUBNUB.init({
+		publish_key: 'pub-c-7f216929-1ce6-49a2-9d92-6884ff0d91f5',
+		subscribe_key: 'sub-c-801c40d4-eddd-11e5-872f-02ee2ddab7fe'
+	});
+
+	PUBNUB_demo.subscribe({
+		channel: channel,
+		message: function(m){
+			document.getElementById("demo").innerHTML += m;},
+		connect : publish
+	});
+
+
 </script>
 </body>
 </html>
