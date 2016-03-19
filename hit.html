@@ -5,11 +5,13 @@
 </head>
 <body>
 <!-- Include the PubNub Library -->
-<p id="demo"></p>
+<p id="demo">Test: </p>
 <script src="https://cdn.pubnub.com/pubnub-dev.js"></script>
 <script type="text/javascript">
 	var channel = getURLParameter('channel');
 	var username = getURLParameter('username');
+
+	console.log(channel);
 
 	var PUBNUB_demo = PUBNUB.init({
 		publish_key: 'pub-c-7f216929-1ce6-49a2-9d92-6884ff0d91f5',
@@ -19,10 +21,12 @@
 	PUBNUB_demo.subscribe({
 		channel: channel,
 		message: function(m){
-			document.getElementById("demo").innerHTML += m;},
-		connect : publish
+			document.getElementById("demo").innerHTML += m.text;}
 	});
 
+	function getURLParameter(name) {
+		return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+	}
 
 </script>
 </body>
