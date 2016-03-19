@@ -66,6 +66,11 @@
 		return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
 	}
 
+	document.addEventListener("click", function(evnt){
+		//console.log(evnt.target.id);
+		scoreboard.addGoal('home');
+	});
+
 </script>
 </body>
 </html>
